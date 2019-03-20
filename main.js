@@ -4,30 +4,28 @@ var roleBuilder = require('role.builder');
 
 module.exports.loop = function () {
 
-    var tower = Game.getObjectById('TOWER_ID');
-    if(tower) {
-        var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-            filter: (structure) => structure.hits < structure.hitsMax
-        });
-        if(closestDamagedStructure) {
-            tower.repair(closestDamagedStructure);
-        }
-
-        var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-        if(closestHostile) {
-            tower.attack(closestHostile);
+    for (var s in Game.spawns) {
+        if (!Game.spawns[s].spawning && Game.spawns[s].energy >= 150) {
+            var p = Object.keys(Game.creeps).length
+            if (p < 5) {
+                console.log('making new creep')
+                console.log(s)
+                Game.spawns[s].spawnCreep([WORK, CARRY, MOVE], 'Worker' + (p + 1), {
+                    memory: { role: 'harvester' }
+                })
+            }
         }
     }
 
-    for(var name in Game.creeps) {
+    for (var name in Game.creeps) {
         var creep = Game.creeps[name];
-        if(creep.memory.role == 'harvester') {
+        if (creep.memory.role == 'harvester') {
             roleHarvester.run(creep);
         }
-        if(creep.memory.role == 'upgrader') {
+        if (creep.memory.role == 'upgrader') {
             roleUpgrader.run(creep);
         }
-        if(creep.memory.role == 'builder') {
+        if (creep.memory.role == 'builder') {
             roleBuilder.run(creep);
         }
     }
