@@ -1,32 +1,36 @@
-var roleHarvester = require('role.harvester');
-var roleUpgrader = require('role.upgrader');
-var roleBuilder = require('role.builder');
+'use strict';
+require('globals');
+
+const Iteration = require('Iteration');
+// const Board = require('Board');
+// const Report = require('Report');
+
+// require('CR');
+// require('Team');
 
 module.exports.loop = function () {
 
-    for (var s in Game.spawns) {
-        if (!Game.spawns[s].spawning && Game.spawns[s].energy >= 150) {
-            var p = Object.keys(Game.creeps).length
-            if (p < 5) {
-                console.log('making new creep')
-                console.log(s)
-                Game.spawns[s].spawnCreep([WORK, CARRY, MOVE], 'Worker' + (p + 1), {
-                    memory: { role: 'harvester' }
-                })
-            }
-        }
+    // console.log('tick ' + Game.time);
+    let iteration = Iteration.loadFromMemory();
+    console.log(iteration);
+    // console.log('Iteration defined: ' + iteration);
+    // const board = new Board()
+
+    if (iteration.isPlanningStep()){
+        console.log('Planning Step');
+        // global.Strategy = board.Meeting()
+    } else if (iteration.isEvaluationStep()){
+        console.log('Evaluation Step');
+        // global.Report = new Report()
     }
 
-    for (var name in Game.creeps) {
-        var creep = Game.creeps[name];
-        if (creep.memory.role == 'harvester') {
-            roleHarvester.run(creep);
-        }
-        if (creep.memory.role == 'upgrader') {
-            roleUpgrader.run(creep);
-        }
-        if (creep.memory.role == 'builder') {
-            roleBuilder.run(creep);
-        }
-    }
+    // if (strategy){
+    //     let teams = Team.loadFromMemory()
+    //     let resources = Game.creeps
+    //     CR.assignResources(strategy,teams,resources)
+    // }
+
+    // for(let team in cr.getPrioritizedTeams(teams)){
+    //     team.act()
+    // }
 }

@@ -1,7 +1,10 @@
-# PSocids
+# <Need to change name>
 
-My Screeps swarm
+My Screeps company
 
+## Architecture
+
+[Architecture](Architecture.md)
 
 ## Add Screeps autocomplete to .vscode
 
