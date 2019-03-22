@@ -1,21 +1,20 @@
 class Strategy {
-    constructor(name,kpis){
-        if(!name){
-            this.name = 'We know what to do!'
-        } else {
+
+    name = 'We know what to do!'
+    kpis = []
+
+    constructor(name, kpis) {
+        if (name) {
             this.name = name
         }
-        if(!kpis) {
-            this.kpis = []
-        }
-        else {
+        if (kpis) {
             this.kpis = kpis
         }
-        console.log('Created Strategy: ' + this)
+        console.log('Created Strategy instance: ' + this)
     }
 
-    toString(){
-        return ( '"' + this.name + '" based on ' + kpis.length + ' KPIs')
+    toString() {
+        return ('"' + this.name + '" based on ' + this.kpis.length + ' KPIs')
     }
 }
 

@@ -2,13 +2,12 @@ const Strategy = require('Strategy')
 
 class Board {
     constructor() {
-        this.strategy = new Strategy()
-        console.log('Created Board with Strategy: ' + this.strategy)
+        console.log('Created Board Instance')
     }
 
-    Meeting() {
+    static Meeting() {
         console.log('Board Meeting started')
-        return this.strategy
+        return new Strategy()
     }
 }
 

@@ -2,7 +2,7 @@
 require('globals');
 
 const Iteration = require('Iteration');
-// const Board = require('Board');
+const Board = require('Board');
 // const Report = require('Report');
 
 // require('CR');
@@ -14,11 +14,10 @@ module.exports.loop = function () {
     let iteration = Iteration.loadFromMemory();
     console.log(iteration);
     // console.log('Iteration defined: ' + iteration);
-    // const board = new Board()
 
     if (iteration.isPlanningStep()){
         console.log('Planning Step');
-        // global.Strategy = board.Meeting()
+        let strategy = Board.Meeting();
     } else if (iteration.isEvaluationStep()){
         console.log('Evaluation Step');
         // global.Report = new Report()
