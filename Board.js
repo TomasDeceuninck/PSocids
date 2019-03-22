@@ -1,4 +1,5 @@
-const Strategy = require('Strategy')
+const Indicator = require('indicators');
+const Strategy = require('Strategy');
 
 class Board {
     constructor() {
@@ -7,6 +8,7 @@ class Board {
 
     static Meeting() {
         console.log('Board Meeting started')
+        console.log(Indicator.testIndicator)
         return new Strategy()
     }
 }

@@ -9,7 +9,6 @@ const Board = require('Board');
 // require('Team');
 
 module.exports.loop = function () {
-
     // console.log('tick ' + Game.time);
     let iteration = Iteration.loadFromMemory();
     console.log(iteration);
