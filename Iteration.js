@@ -37,14 +37,14 @@ class Iteration {
 
     static loadFromMemory(){
         // console.log('Loading from memory');
-        if(Memory.Iteration.startTime && Memory.Iteration.duration){
-            // console.log('Found in memory: ' + Memory.Iteration.startTime + ' ' + Memory.Iteration.duration);
-            return (new Iteration(Memory.Iteration.startTime,Memory.Iteration.duration));
-        } else {
+        if(!Memory.Iteration || !Memory.Iteration.startTime || !Memory.Iteration.duration){
             // console.log('Not found in memory');
             let iteration = new Iteration(Game.time,global.DEFAULT_ITERATION_DURATION);
             iteration.saveToMemory();
             return iteration;
+        } else {
+            // console.log('Found in memory: ' + Memory.Iteration.startTime + ' ' + Memory.Iteration.duration);
+            return (new Iteration(Memory.Iteration.startTime,Memory.Iteration.duration));
         }
     }
 };
