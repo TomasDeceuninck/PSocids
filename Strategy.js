@@ -10,7 +10,7 @@ class Strategy {
         if (kpis) {
             this.kpis = kpis
         }
-        console.log('Created Strategy instance: ' + this)
+        // console.log('Created Strategy instance: ' + this);
     }
 
     toString() {

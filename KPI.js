@@ -1,7 +1,8 @@
 class KPI {
-    constructor(id,indicatorId,targetValue){
-        this.id = id
-        this.indicatorId = indicatorId
+    constructor(indicator,targetValue){
+        this.indicator = indicator
         this.targetValue = targetValue
     }
 }
+
+module.exports = KPI;
