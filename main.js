@@ -2,8 +2,8 @@
 require('globals');
 
 
-// require('CR');
-// require('Team');
+require('CR');
+require('Team');
 
 module.exports.loop = function () {
     const Iteration = require('Iteration');
