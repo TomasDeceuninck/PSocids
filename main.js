@@ -17,18 +17,18 @@ module.exports.loop = function () {
         // console.log('Planning Step');
         const Board = require('Board');
         let strategy = Board.Meeting();
+        CR.allignResourcePlan(strategy);
     } else if (iteration.isEvaluationStep()) {
         // console.log('Evaluation Step');
         const Report = require('Report');
         let report = new Report;
         console.log(report);
+    } else if (strategy){
+        let teams = Team.loadFromMemory()
+        for (let team in teams) {
+            team.act()
+        }
     }
-
-    // if (strategy){
-    //     let teams = Team.loadFromMemory()
-    //     let resources = Game.creeps
-    //     CR.assignResources(strategy,teams,resources)
-    // }
 
     // for(let team in cr.getPrioritizedTeams(teams)){
     //     team.act()
