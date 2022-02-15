@@ -4,7 +4,7 @@ My Screeps company
 
 ## Architecture
 
-[Architecture](Architecture.md)
+[Architecture](docs/architecture.md)
 
 ## Add Screeps autocomplete to .vscode
 
