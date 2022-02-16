@@ -2,7 +2,6 @@
 require('globals');
 
 
-require('CR');
 require('Team');
 
 module.exports.loop = function () {
@@ -17,7 +16,9 @@ module.exports.loop = function () {
         // console.log('Planning Step');
         const Board = require('Board');
         let strategy = Board.Meeting();
-        CR.allignResourcePlan(strategy);
+        const CR = require('CR');
+        console.log('We hire all the resources!')
+        global.hq.spawnCreep([WORK,CARRY,MOVE,MOVE], "My First Creep");
     } else if (iteration.isEvaluationStep()) {
         // console.log('Evaluation Step');
         const Report = require('Report');
