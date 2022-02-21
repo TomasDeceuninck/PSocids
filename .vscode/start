@@ -1,0 +1,6 @@
+npm install @types/screeps
+npm install @types/lodash
+
+npm install grunt
+grunt screeps
+./node_modules/grunt/bin/grunt screeps

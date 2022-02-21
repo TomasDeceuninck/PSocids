@@ -1,37 +1,34 @@
-'use strict';
-require('globals');
-
-
-require('Team');
+var roleHarvester = require('role.harvester');
+var roleUpgrader = require('role.upgrader');
+var roleBuilder = require('role.builder');
 
 module.exports.loop = function () {
-    const Iteration = require('Iteration');
-    let iteration = Iteration.loadFromMemory();
-    console.log(iteration);
-    // console.log('Iteration defined: ' + iteration);
 
-    require('global_information');
+    var tower = Game.getObjectById('TOWER_ID');
+    if(tower) {
+        var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+            filter: (structure) => structure.hits < structure.hitsMax
+        });
+        if(closestDamagedStructure) {
+            tower.repair(closestDamagedStructure);
+        }
 
-    if (iteration.isPlanningStep()) {
-        // console.log('Planning Step');
-        const Board = require('Board');
-        let strategy = Board.Meeting();
-        const CR = require('CR');
-        console.log('We hire all the resources!')
-        global.hq.spawnCreep([WORK,CARRY,MOVE,MOVE], "My First Creep");
-    } else if (iteration.isEvaluationStep()) {
-        // console.log('Evaluation Step');
-        const Report = require('Report');
-        let report = new Report;
-        console.log(report);
-    } else if (strategy){
-        let teams = Team.loadFromMemory()
-        for (let team in teams) {
-            team.act()
+        var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+        if(closestHostile) {
+            tower.attack(closestHostile);
         }
     }
 
-    // for(let team in cr.getPrioritizedTeams(teams)){
-    //     team.act()
-    // }
+    for(var name in Game.creeps) {
+        var creep = Game.creeps[name];
+        if(creep.memory.role == 'harvester') {
+            roleHarvester.run(creep);
+        }
+        if(creep.memory.role == 'upgrader') {
+            roleUpgrader.run(creep);
+        }
+        if(creep.memory.role == 'builder') {
+            roleBuilder.run(creep);
+        }
+    }
 }
